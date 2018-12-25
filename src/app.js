@@ -22,9 +22,9 @@ store.subscribe(()=>{
 
 // console.log(store.getState());
 
-store.dispatch(addExpense({description:'water bill',amount:2750,createdAt:600}));
-store.dispatch(addExpense({description:'rent',amount:60,createdAt:500}));
-store.dispatch(addExpense({description:'gas bill',amount:5000,createdAt:1100}));
+//store.dispatch(addExpense({description:'water bill',amount:2750,createdAt:600}));
+//store.dispatch(addExpense({description:'rent',amount:60,createdAt:500}));
+//store.dispatch(addExpense({description:'gas bill',amount:5000,createdAt:1100}));
 
 
 //store.dispatch(setTextFilterAction('bill'));
