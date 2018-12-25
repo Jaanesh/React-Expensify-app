@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a  expenseitem when no expense is passes as prop  1`] = `
+<tr>
+  <td>
+    <NavLink
+      activeClassName="active"
+      ariaCurrent="true"
+      to="/edit/undefined"
+    />
+  </td>
+  <td />
+  <td />
+</tr>
+`;
+
+exports[`should render a single expenseitem when one expense is passes as prop  1`] = `
+<tr>
+  <td>
+    <NavLink
+      activeClassName="active"
+      ariaCurrent="true"
+      to="/edit/1"
+    >
+      jan rent
+    </NavLink>
+  </td>
+  <td>
+    3
+  </td>
+  <td>
+    -432000000
+  </td>
+</tr>
+`;

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseList with expenses 1`] = `
+<div>
+  <Connect(ExpenseListFilterComponent) />
+  <p>
+    Expense List
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          description
+        </th>
+        <th>
+          amount
+        </th>
+        <th>
+          createdAt
+        </th>
+      </tr>
+      <Component
+        amount={3}
+        createdAt={-432000000}
+        description="jan rent"
+        id="1"
+        key="1"
+        note=""
+      />
+      <Component
+        amount={2}
+        createdAt={"1970-01-01T00:00:00.000Z"}
+        description="feb rent"
+        id="2"
+        key="2"
+        note=""
+      />
+      <Component
+        amount={1}
+        createdAt={432000000}
+        description="mar fees"
+        id="3"
+        key="3"
+        note=""
+      />
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`should render expense list with no expense 1`] = `
+<div>
+  <Connect(ExpenseListFilterComponent) />
+  <p>
+    Expense List
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          description
+        </th>
+        <th>
+          amount
+        </th>
+        <th>
+          createdAt
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
