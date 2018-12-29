@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux' ;
 import {NavLink} from 'react-router-dom';
+import moment from 'moment';
+import numeral from 'numeral';
 import {removeExpense} from '../actions/expense';
 
 //dispatch is coming from parent
@@ -16,8 +18,8 @@ import {removeExpense} from '../actions/expense';
 export default ({id,description,amount,createdAt}={})=>(    
         <tr>
             <td><NavLink to={`/edit/${id}`} >{description}</NavLink></td>
-            <td>{amount}</td>
-            <td>{createdAt}</td>         
+            <td>{numeral(amount/100).format('$0,0.00')}</td>
+            <td>{moment(createdAt).format('MMMM Do, YYYY')}</td>         
         </tr>    
 );
 
