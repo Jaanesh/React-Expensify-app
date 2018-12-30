@@ -2,7 +2,10 @@
 
 exports[`should render DashBoardComponent 1`] = `
 <div>
-  This is dashboard
+  <h2>
+    This is dashboard
+  </h2>
+  <Connect(TotalExpenseComponent) />
   <Connect(ExpenseList) />
 </div>
 `;
