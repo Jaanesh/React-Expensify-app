@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseFormComponent';
-import {editExpense,removeExpense} from '../actions/expense.js';
+import {editExpense,removeExpense,startRemoveExpense} from '../actions/expense.js';
 
 /*
 const editExpenseComponentTemplate=(props)=>{    
@@ -88,7 +88,9 @@ const mapDispatchToProps=(dispatch,props)=>{
    // return onSubmit=(newExpense)=>dispatch(addExpense(newExpense));
      return{
         updateExpense:(id,updatedExpense)=>dispatch(editExpense(id,updatedExpense)),
-        removeExistingExpense:(id)=>dispatch(removeExpense(id))
+        //removeExistingExpense:(id)=>dispatch(removeExpense(id))
+        removeExistingExpense:(id)=>dispatch(startRemoveExpense(id))
+        
      }
       
 }

@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {startSetExpenses,addExpense,editExpense,removeExpense,startAddExpense,setExpenses} from '../../actions/expense';
+import {startRemoveExpense,startSetExpenses,addExpense,editExpense,removeExpense,startAddExpense,setExpenses} from '../../actions/expense';
 import database from '../../firebase/firebase';
 import moment from 'moment';
 
@@ -90,11 +90,11 @@ test('should add expense to datastore and store',(done)=>{
             }
         });
 
-        done();
+       // done();
     //check whether expense of particular id can be retrieved
     return database.ref(`expenses/${actions[0].expense.id}`).once('value');  
 
-    }).then(()=>{
+    }).then((snapshot)=>{
         expect(snapshot.val()).toEqual(expenseobject);
 
         done();
@@ -126,11 +126,11 @@ test('should add expense with defaults to datastore and store',(done)=>{
     //check whether expense of particular id can be retrieved
     return database.ref(`expenses/${actions[0].expense.id}`).once('value');  
 
-    }).then(()=>{
+    }).then((snapshot)=>{
         expect(snapshot.val()).toEqual(expenseobject);
 
         done();
- }); ;
+    }); 
 });
 
 test('should setup set expense action object with data',()=>{
@@ -154,6 +154,24 @@ test('should fetch the expenses from firebase',(done)=>{
         done();
 });
 
+});
+
+test('should remove expenses from firebase for given id',(done)=>{
+    const store=createMockStore({});
+    let remove_id='1';
+    store.dispatch(startRemoveExpense(remove_id)).then(()=>{
+        const actions=store.getActions();
+        expect(actions[0]).toEqual({
+            type:'REMOVE_EXPENSE',
+            id:remove_id
+        });
+   
+        return database.ref(`expenses/${remove_id}`).once('value');
+     }).then((snapshot)=>{
+         // tobefalsy is used because we are expecting false since id is already removed from test db
+        expect(snapshot.val()).toBeFalsy();
+        done();
+    }); 
 });
 
 /* test('should add expense with provided expense obj',()=>{

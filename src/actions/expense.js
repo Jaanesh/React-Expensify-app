@@ -52,6 +52,24 @@ export const removeExpense=(remove_id)=>{
     }
 }
 
+//start remove expense
+
+export const startRemoveExpense=(remove_id)=>{
+    return (dispatch)=>{
+        return database.ref(`/expenses/${remove_id}`)
+                .remove()
+                .then(()=>{
+                    console.log(`/expenses/${remove_id} is going to be removed from firebase`);
+                    dispatch(removeExpense(remove_id));
+                     
+                 }).catch((e)=>{
+                      console.log("Exception="+e);
+                }); 
+
+               
+    }
+}
+
 //SET_EXPENSES
 export const setExpenses=(expenses)=>{
    return{
