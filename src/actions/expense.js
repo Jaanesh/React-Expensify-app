@@ -45,6 +45,20 @@ export const editExpense=(id,updateObject)=>{
     }
 }
 
+//start edit expense
+
+export const startEditExpense=(id,updateObject)=>{
+    return (dispatch)=>{
+            
+         return database.ref(`expenses/${id}`)
+                        .update(updateObject)
+                        .then(()=>{
+                            console.log(`going to update in fire base for expense/${id}`);
+                            dispatch(editExpense(id,updateObject));
+                        });
+    }
+}
+
 export const removeExpense=(remove_id)=>{
     return{
         type:'REMOVE_EXPENSE',
