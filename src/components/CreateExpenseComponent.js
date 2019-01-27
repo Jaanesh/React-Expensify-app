@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux' ;
-import {addExpense} from '../actions/expense.js';
+//import {addExpense} from '../actions/expense.js';
+import {startAddExpense} from '../actions/expense.js';
 import ExpenseForm from './ExpenseFormComponent';
 
 /*
@@ -47,7 +48,10 @@ export class CreateExpenseComponentTemplate extends React.Component{
 
 const mapDispatchToProps=(dispatch)=>{
      return{
-        onSubmit:(newExpense)=>dispatch(addExpense(newExpense))
+        //onSubmit:(newExpense)=>dispatch(addExpense(newExpense))
+
+        //dispatch startAddExpense to add data to firebase
+        onSubmit:(newExpense)=>dispatch(startAddExpense(newExpense))
      }
 }
 
