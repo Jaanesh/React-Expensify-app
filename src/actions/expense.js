@@ -51,3 +51,35 @@ export const removeExpense=(remove_id)=>{
         id:remove_id
     }
 }
+
+//SET_EXPENSES
+export const setExpenses=(expenses)=>{
+   return{
+       type:'SET_EXPENSES',
+       expenses
+   }
+}
+
+//export const startSetExpenses;
+export const startSetExpenses=()=>{
+
+    return (dispatch)=>{
+               return database.ref('expenses')
+                              .once('value')
+                              .then((snapShot)=>{
+                                    let expenses=[];
+                                    snapShot.forEach(childSnapShot=>{                
+                                    expenses.push({
+                                         id:childSnapShot.key,
+                                         ...childSnapShot.val()
+                                    });
+                               });
+                                  console.log('going to call setExpenses');
+                                  dispatch(setExpenses(expenses));
+                                })
+                             .catch((e)=>{
+                                   console.log("Exception ="+e);
+                              });
+    }
+      
+}

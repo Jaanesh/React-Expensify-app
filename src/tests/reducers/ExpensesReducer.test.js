@@ -35,3 +35,9 @@ test('should add expense',()=>{
     const newState=expensesReducer(expensesArray,action);
     expect(newState).toEqual([expenseObj1,expenseObj2,expenseObj3,updateObject]);
 });
+
+test('should set expense',()=>{
+    const action={type:'SET_EXPENSES', expenses:expensesArray};
+    const newState=expensesReducer(expensesArray,action);
+    expect(newState).toEqual([expenseObj1,expenseObj2,expenseObj3]);
+});

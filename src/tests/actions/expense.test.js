@@ -1,9 +1,32 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {addExpense,editExpense,removeExpense,startAddExpense} from '../../actions/expense';
+import {startSetExpenses,addExpense,editExpense,removeExpense,startAddExpense,setExpenses} from '../../actions/expense';
 import database from '../../firebase/firebase';
+import moment from 'moment';
+
+let expenseObj1={id:'1', description:'jan rent',note:'',amount:3,createdAt:1000};
+let expenseObj2={id:'2', description:'feb rent',note:'',amount:2,createdAt:2000};
+let expenseObj3={id:'3', description:'mar fees',note:'',amount:1,createdAt:3000};
+
+let expenses=[expenseObj1,expenseObj2,expenseObj3];
+
+ beforeEach((done)=>{
 
 
+
+   const expensesData={};
+   expenses.forEach(({id,description,note,amount,createdAt})=>{
+    expensesData[id]={description,note,amount,createdAt};  
+   });
+
+   
+    database.ref('expenses')
+           .set(expensesData)
+           .then(()=>done())
+           .catch((err)=>{
+               console.log("Error while setting up in expense test");
+           }); 
+}); 
 
 const createMockStore=configureMockStore([thunk]);
 
@@ -110,6 +133,29 @@ test('should add expense with defaults to datastore and store',(done)=>{
  }); ;
 });
 
+test('should setup set expense action object with data',()=>{
+    const actionObject=setExpenses(expenses);
+    expect(actionObject).toEqual({
+        type:'SET_EXPENSES',
+        expenses
+    });
+});
+
+test('should fetch the expenses from firebase',(done)=>{
+    const store=createMockStore({});
+
+    store.dispatch(startSetExpenses()).then(()=>{
+        const actions=store.getActions();
+        expect(actions[0]).toEqual({
+            type:'SET_EXPENSES',
+            expenses
+        });
+
+        done();
+});
+
+});
+
 /* test('should add expense with provided expense obj',()=>{
     const expenseobject={        
         description:'description',
@@ -125,9 +171,9 @@ test('should add expense with defaults to datastore and store',(done)=>{
             ...expenseobject
         }        
     });    
-}); */
+}); 
 
-/* test('should add expense when expense not provided',()=>{    
+ test('should add expense when expense not provided',()=>{    
     const actionObject=addExpense();
     expect(actionObject).toEqual({
         type:'ADD_EXPENSE',

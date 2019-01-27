@@ -15,7 +15,11 @@ export default (state=expenseReducerDefaultState,action)=>{
                    {
                     return individualExpense;
                    }
-        });                             
+        });  
+        case 'SET_EXPENSES':  //state=[] ;
+                              //action.expenses.forEach((eachExpense)=>state.push(eachExpense));    
+                              return action.expenses;
+
         default:return state;
     }
 };

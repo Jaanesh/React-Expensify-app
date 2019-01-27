@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import appRouter from './routers/AppRouter.js';
 import configureStore from './store/ConfigureStore.js';
-import {addExpense,editExpense,removeExpense} from './actions/expense';
+import {startSetExpenses,addExpense,editExpense,removeExpense} from './actions/expense';
 import {sortByAmountAction,sortByDateAction,setStartDate,setEndDate,setTextFilterAction} from './actions/filters';
 import listFilteredExpenses from './selectors/Expenses.js';
 import 'normalize.css/normalize.css';
@@ -40,4 +40,10 @@ let jsxTemplate=(
     </Provider>
 );
 //let appRoot = document.getElementById('app1');
-ReactDOM.render(jsxTemplate, document.getElementById('app1'));
+
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app1'));
+
+store.dispatch(startSetExpenses()).then(()=>{
+    ReactDOM.render(jsxTemplate, document.getElementById('app1'));
+});
+
