@@ -30,7 +30,7 @@ export class CreateExpenseComponentTemplate extends React.Component{
     onSubmit=(newExpense)=>{
         console.log(newExpense);
         this.props.onSubmit(newExpense);
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
     }
 
     render(){

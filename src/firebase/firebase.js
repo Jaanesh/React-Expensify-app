@@ -21,8 +21,9 @@ import * as firebase from 'firebase';
 firebase.initializeApp(config);
 
 let database=firebase.database();
+let googleAuthProvider=new firebase.auth.GoogleAuthProvider();
 
-export {firebase,database as default};
+export {firebase,googleAuthProvider,database as default};
 
 /* let arr=[{
     description:'description-1',

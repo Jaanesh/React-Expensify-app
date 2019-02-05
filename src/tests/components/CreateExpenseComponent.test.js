@@ -19,6 +19,6 @@ test('should render CreateExpenseComponentTemplate correctly',()=>{
 
 test('should handle onSubmit',()=>{
     wrapper.find('ExpenseForm').prop('onSubmit')(expenseObj1);
-    expect(history.push).toHaveBeenLastCalledWith('/');
+    expect(history.push).toHaveBeenLastCalledWith('/dashboard');
     expect(onSubmit).toHaveBeenLastCalledWith(expenseObj1);
 });

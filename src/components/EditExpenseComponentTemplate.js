@@ -49,13 +49,13 @@ export class EditExpenseComponentTemplate extends React.Component{
     onSubmit=(updatedExpense)=>{
         console.log(updatedExpense);
         this.props.updateExpense(this.props.expenseToBeEdited.id,updatedExpense);
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
     }
 
     onClick=()=>{
         console.log('remove id='+this.props.expenseToBeEdited.id);
         this.props.removeExistingExpense(this.props.expenseToBeEdited.id);
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
     }
 
     render(){
